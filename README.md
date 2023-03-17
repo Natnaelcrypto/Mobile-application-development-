@@ -39,5 +39,5 @@ This application authenticate users and authoris them to the pages that are allo
 | Basliel Amsalu | UGR/8569/13 |  |
 | Dawit Minale | UGR/7990/13 |  |
 | Yared Belete | UGR/9874/13 | YaredBT |
-| Firaol Bogale | UGR/1469/13 | |
+| Firaol Bogale | UGR/1469/13 | fraol1 |
 
