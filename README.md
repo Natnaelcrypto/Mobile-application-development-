@@ -33,10 +33,10 @@ This application authenticate users and authoris them to the pages that are allo
 
 ## Group Members Name
 
-| Name | id|
-| --- | --- |
-| Natnael Yohannes | UGR/4167/13 |
-| Basliel Amsalu | UGR/8569/13 |
-| Dawit Minale | UGR/7990/13 |
+| Name | id| GitHub Account Nam|
+| --- | --- |--- |
+| Natnael Yohannes | UGR/4167/13 | Natnaelcrypto |
+| Basliel Amsalu | UGR/8569/13 |  |
+| Dawit Minale | UGR/7990/13 |  |
 
 
