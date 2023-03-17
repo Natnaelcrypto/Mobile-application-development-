@@ -3,6 +3,7 @@
 ## Description 
 ### project title: Apartment Mangement system
 This application can be used apartment managers and tenants.
+
 This application authenticate users and authoris them to the pages that are allowed to them add perform the actions that are allowed.
 
  - The managers can do:
