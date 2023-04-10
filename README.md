@@ -27,7 +27,7 @@ This application authenticate users and authoris them to the pages that are allo
  ## New title
  
  ### Project title: HerdMaster
- 
+ ---
  #### The features of the app are
  
   - Farmers can input information about their animals, such as breed, age, and health status. 
