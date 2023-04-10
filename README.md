@@ -26,7 +26,7 @@ This application authenticate users and authoris them to the pages that are allo
  
  ## New title
  
- ### Project title: 
+ ### Project title: HerdMaster
  
  #### The features of the app are
  
