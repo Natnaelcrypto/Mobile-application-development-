@@ -16,29 +16,26 @@ export class InformationsController {
   @Get()
   find_infos(@Request() req: any) {
     const find_user = req.user;
-    return
+    return this.informationService.find_infos();
   }
   @Get()
   find_info(@Body() data: any, @Request() req: any) {
     const find_user = req.user;
-    return
+    return this.informationService.find_info(data);
   }
-
   @Post()
-  create_info(@Body() data: any, @Request() req: any) {
+  create_info(@Body() data:any, @Request() req: any) {
     const find_user = req.user;
-    return 
+    return this.informationService.create(data);
   }
-
   @Patch(":id")
   update(@Param("id") id: any, @Body() data:any, @Request() req: any) {
     const find_user = req.user;
-    return
+    return this.informationService.Update_info(id, data);
   }
-
-  @Delete(":id")
+  @Delete("id")
   delate(@Param("id") id: any, @Request() req: any) {
     const find_user = req.user;
-    return
+    return this.informationService.delate(id);
   }
 }
