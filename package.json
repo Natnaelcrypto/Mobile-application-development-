@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@nestjs/common": "^9.4.0",
+    "@nestjs/core": "^9.4.0",
+    "@nestjs/mongoose": "^9.2.2",
+    "mongoose": "^7.1.0",
+    "reflect-metadata": "^0.1.13"
+  }
+}
