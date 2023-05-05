@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strictPropertyInitialization": false,
     "target": "es6",
     "module": "commonjs",
     "declaration": true,
@@ -10,5 +11,6 @@
     "emitDecoratorMetadata": true,
     "sourceMap": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  
 }
