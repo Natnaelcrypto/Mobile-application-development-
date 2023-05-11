@@ -9,7 +9,7 @@
         - it uses jwt authtication.
         - we used it to secure the API by looking the the access token send from the request.
               
-            ``for example`` in the **api/v1/herds/:id** Get request we called our guard @UseGuards(AuthGuard('jwt')) so every time a request come it lookes the access token and validat it. if it fail it will respond with status code of ``401 Unauthorized``.
+            #### ``for example`` in the **api/v1/herds/:id** Get request we called our guard @UseGuards(AuthGuard('jwt')) so every time a request come it lookes the access token and validat it. if it fail it will respond with status code of ``401 Unauthorized``.
             --------------------------------------------
                       @UseGuards(AuthGuard('jwt'))
                       @Get(':id')
