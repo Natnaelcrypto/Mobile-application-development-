@@ -8,6 +8,7 @@ import {
   Post,
   UseGuards,
   Request,
+  Put,
 } from '@nestjs/common';
 import { FarmsService } from './farms.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -16,39 +17,27 @@ import { AuthGuard } from '@nestjs/passport';
 export class FarmsController {
   constructor(private readonly farmService: FarmsService) {}
 
-  @UseGuards(AuthGuard('jwt')) 
-  //  we used the jwt authtication to check the requestes 
-  //  are made by valid user by taking the authtiaction token 
-  //  for all end pointes to privent unauthorized access.
+  // @Get(':id')
+  // find_farm(@Param('id') userID: any, @Request() req: any) {
+  //   const find_user = req.user;
+  //   return this.farmService.find_farme(userID);
+  // }
 
-  @Get(':id')
-  find_farm(@Param('id') userID: any, @Request() req: any) {
-    const find_user = req.user;
-    return this.farmService.find_farme(userID);
+  @Get(':farmname')
+  find_farms(@Param('farmname') farmName:any) {
+    return this.farmService.find_farmes(farmName);
   }
 
-  @UseGuards(AuthGuard('jwt'))
-  @Get()
-  find_farms(@Request() req: any) {
-    const find_user = req.user;
-    return this.farmService.find_farmes();
-  }
-  
-  @UseGuards(AuthGuard('jwt'))
   @Post()
   create_farm(@Body() date: any, @Request() req: any) {
-    const find_user = req.user;
     return this.farmService.create_farm(date);
   }
 
-  @UseGuards(AuthGuard('jwt'))
-  @Patch(':id')
+  @Put(':id')
   update_farm(@Body() data: any, @Param() id: any, @Request() req: any) {
-    const find_user = req.user;
-    return this.farmService.update(data, id);
+    return this.farmService.update(data, id.id);
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   delate_farm(@Param('id') farmId, @Request() req: any) {
     const find_user = req.user;
