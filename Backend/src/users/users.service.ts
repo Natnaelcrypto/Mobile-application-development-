@@ -7,63 +7,68 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('User') private usermodel: Model<User>) {}
-  
-  async find_users(){
-    return this.usermodel.find()
+
+  async find_users(farmname: any) {
+    console.log(farmname);
+    return this.usermodel.find({ farmName: farmname });
   }
-  async find_user(user:any){
-    const get_user = await this.usermodel.findOne({userName:user.userName});
-    if (get_user){
-        return get_user
-    }
-    return null
-  }
-  async create_User(user:any){
-    if (!user.fristName||!user.lastName||!user.userName||!user.password||!user.Role){
-      throw new BadRequestException("All filled are required");
-      
+  async find_user(user: any) {
+    console.log(user.userName);
+    const get_user = await this.usermodel.findOne({ userName: user.userName });
+    if (get_user) {
+      return get_user;
     }
 
-
+    return null;
+  }
+  async create_User(user: any) {
+    if (
+      !user.fristName ||
+      !user.lastName ||
+      !user.userName ||
+      !user.password ||
+      !user.Role ||
+      !user.farmName
+    ) {
+      throw new BadRequestException('All filled are required');
+    }
     const find_user = await this.usermodel.findOne({ userName: user.userName });
-    if (find_user){
-        throw new BadRequestException("Username exist");
+    if (find_user) {
+      throw new BadRequestException('Username exist');
     }
     const saltOrRounds = await bcrypt.genSalt(15);
     const hashedPassword = await bcrypt.hash(user.password, saltOrRounds);
-    
-    const newUser = new this.usermodel({
-      fristName:user.fristName,
-      lastName:user.lastName,
-      userName:user.userName,
-      Role:user.Role,
-      password: hashedPassword,
-    });
 
-    
+    const newUser = new this.usermodel({
+      fristName: user.fristName,
+      lastName: user.lastName,
+      userName: user.userName,
+      Role: user.Role,
+      password: hashedPassword,
+      farmName: user.farmName,
+    });
 
     const result = newUser.save();
 
     if (result) {
       return result;
     }
-
   }
-  async delate_user(id:any){
+  async delate_user(id: any) {
     const delated_accunt = await this.usermodel.findByIdAndDelete(id);
-    if (delated_accunt){
-        return delated_accunt
+
+    if (delated_accunt) {
+      return delated_accunt;
     }
   }
 
-  async update_user(user:any){
-    const find_user= await this.usermodel.findById(user._id)
-    if (!find_user){
-        throw new BadRequestException( "User does not exist");
-        
+  async update_user(id, user: any) {
+    const find_user = await this.usermodel.findById(id);
+    if (!find_user) {
+      throw new BadRequestException('User does not exist');
     }
-    if(user.userName){
-        find_user.userName=user.userName
+    if (user.userName) {
+      find_user.userName = user.userName;
     }
     if (user.fristName) {
       find_user.fristName = user.fristName;
@@ -72,14 +77,18 @@ export class UsersService {
       find_user.lastName = user.lastName;
     }
     if (user.password) {
-      find_user.password = user.password;
+      const saltOrRounds = await bcrypt.genSalt(15);
+      const hashedPassword = await bcrypt.hash(user.password, saltOrRounds);
+      find_user.password = hashedPassword;
+    }
+    if (user.farmName) {
+      find_user.farmName = user.farmName;
     }
 
-    const updated_account=await find_user.save()
+    const updated_account = await find_user.save();
 
-    if (updated_account){
-        return updated_account
+    if (updated_account) {
+      return updated_account;
     }
-
-  } 
+  }
 }
