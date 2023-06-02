@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export const herdSchema = new mongoose.Schema({
-  farmID: {
+  farmname: {
     type: String,
     required: true,
   },
@@ -10,7 +10,7 @@ export const herdSchema = new mongoose.Schema({
     required: true,
   },
   age: {
-    type: Number,
+    type: String,
     required: true,
   },
   bread: {
@@ -18,19 +18,19 @@ export const herdSchema = new mongoose.Schema({
     required: true,
   },
   health_history: {
-    type: String,
+    type: [],
     required: true,
   },
   vaccination: {
-    type: String,
+    type: [],
     required: true,
   },
   medication: {
-    type: String,
+    type: [],
     required: true,
   },
   pregnancy: {
-    type: String,
+    type: [],
     required: true,
   },
   gender: {
@@ -40,13 +40,13 @@ export const herdSchema = new mongoose.Schema({
 });
 
 export class Herd {
-  farmID: string;
+  farmname: string;
   herdID: string;
-  age: number;
+  age: string;
   bread: string;
-  health_history: string;
-  vaccination: string;
-  medication: string;
-  pregnancy: string;
+  health_history: [];
+  vaccination: [];
+  medication: [];
+  pregnancy: [];
   gender: string;
 }
