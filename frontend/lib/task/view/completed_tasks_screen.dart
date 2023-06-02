@@ -21,8 +21,8 @@ class CompletedTasksScreen extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 300,
-          height: 400,
+          width: 400,
+          height: 450,
           child: TasksList(status: true),
         )
       ],

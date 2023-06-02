@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../LocalStroe/Store.dart';
-import '../../model/task_model.dart';
+import '../../../task/model/task_model.dart';
 import 'package:http/http.dart' as http;
 
 class TaskDataProvider {
@@ -21,7 +21,6 @@ class TaskDataProvider {
           "detail": task.detail,
           "status": task.status,
           "title": task.title,
-          "due_date": task.due_date,
           "farmname": task.farmname,
           "assgined_to": task.assgined_to
         },
@@ -70,12 +69,12 @@ class TaskDataProvider {
           "detail": task.detail,
           "status": task.status,
           "title": task.title,
-          "due_date": task.due_date,
           "farmname": task.farmname,
           "assgined_to": task.assgined_to
         },
       ),
     );
+    print(response.body);
     if (response.statusCode == 200) {
       return Task.fromJson(
         jsonDecode(response.body),

@@ -1,12 +1,13 @@
+import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pro/LocalStroe/Store.dart';
 
-import '../bloc/task_bloc.dart';
-import '../bloc/task_event.dart';
-import '../bloc/task_state.dart';
+import '../../LocalStroe/Store.dart';
 import '../model/task_model.dart';
+import '../task_bloc/task_bloc.dart';
+import '../task_bloc/task_event.dart';
+import '../task_bloc/task_state.dart';
 
 class AddTaskScreen extends StatelessWidget {
   const AddTaskScreen({
@@ -90,8 +91,9 @@ class AddTaskScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
-                      onPressed: () => context.go("/tasklist"),
-                      child: const Text("cancel")),
+                    onPressed: () => context.go("/tasklist"),
+                    child: const Text("Back"),
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       String title = titleController.text;
@@ -103,8 +105,7 @@ class AddTaskScreen extends StatelessWidget {
                             title: title,
                             detail: description,
                             status: false,
-                            due_date: "dsmlc",
-                            date_created: "djnck",
+                            date_created: "",
                             farmname: UserPreferences.farmName,
                             assgined_to: emplooyeusername.text,
                           ),
@@ -114,6 +115,10 @@ class AddTaskScreen extends StatelessWidget {
                       }
                     },
                     child: const Text("Add"),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Color.fromRGBO(161, 103, 74, .9)),
+                    ),
                   )
                 ],
               ),

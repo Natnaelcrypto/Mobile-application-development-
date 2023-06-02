@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../model/task_model.dart';
+import '../../task/model/task_model.dart';
 
 abstract class TaskEvent extends Equatable {
   const TaskEvent();
@@ -55,4 +55,11 @@ class TaskDelete extends TaskEvent {
 
   @override
   bool? get stringify => true;
+}
+
+class TaskReset extends TaskEvent {
+  const TaskReset();
+
+  @override
+  List<Object> get props => [];
 }

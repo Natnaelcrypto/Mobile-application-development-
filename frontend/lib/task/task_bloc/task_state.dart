@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../model/task_model.dart';
+import '../../task/model/task_model.dart';
 
 abstract class TaskState extends Equatable {
   const TaskState();
@@ -10,6 +10,8 @@ abstract class TaskState extends Equatable {
 }
 
 class TaskLoading extends TaskState {}
+
+class TaskInitial extends TaskState {}
 
 class TaskDataLoaded extends TaskState {
   final Iterable<Task> tasks;

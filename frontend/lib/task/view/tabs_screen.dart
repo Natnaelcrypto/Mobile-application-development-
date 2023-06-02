@@ -45,12 +45,7 @@ class _TabsScreenState extends State<TabsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_pageDetails[_selectedPageIndex]["title"]),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () => _addTask(context),
-        //     icon: const Icon(Icons.add),
-        //   )
-        // ],
+        backgroundColor: Color.fromRGBO(36, 130, 50, .6),
       ),
       drawer: Drawerpage(),
       body: _pageDetails[_selectedPageIndex]["pageName"],
@@ -60,6 +55,7 @@ class _TabsScreenState extends State<TabsScreen> {
                   onPressed: () => _addTask(context),
                   tooltip: 'Add Task',
                   child: const Icon(Icons.add),
+                  backgroundColor: Color.fromRGBO(161, 103, 74, .6),
                 )
               : null
           : null,

@@ -1,6 +1,6 @@
 import 'package:pro/task/model/task_model.dart';
-import '../data_providers/API/task_data_provider.dart';
-import '../data_providers/Local_Storage/Local_Storage.dart';
+import '../task_data_providers/API/task_data_provider.dart';
+import '../task_data_providers/Local_Storage/Local_Storage.dart';
 
 class TaskRepository {
   TaskDataProvider taskdataProvider;
@@ -12,8 +12,9 @@ class TaskRepository {
   }
 
   Future<Task> create(Task task) async {
-    await dbHelper.insertTask(task);
-    return taskdataProvider.create(task);
+    var result=await taskdataProvider.create(task);
+    await dbHelper.insertTask(result);
+    return result;
   }
 
   Future<Task> update(String id, Task task) async {
@@ -29,7 +30,6 @@ class TaskRepository {
       } else {
         final dataFromApi = await taskdataProvider.fetchAll();
         for (Task x in dataFromApi) {
-          print(x.farmname);
           await dbHelper.insertTask(x);
         }
 

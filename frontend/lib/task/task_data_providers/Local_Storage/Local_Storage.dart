@@ -17,7 +17,7 @@ class TaskDbHelper {
     db = await openDatabase(join(await getDatabasesPath(), 'her7.db'),
         onCreate: (database, version) async {
       await database.execute(
-          'CREATE TABLE IF NOT EXISTS Task(taskid Text, title Text, detail TEXT, status INTEGER, userID TEXT, due_date TEXT, date_created TEXT, farmname TEXT, assgined_to TEXT)');
+          'CREATE TABLE IF NOT EXISTS Task(taskid Text, title Text, detail TEXT, status INTEGER, userID TEXT, date_created TEXT, farmname TEXT, assgined_to TEXT)');
     }, version: version);
 
     return db;
@@ -52,7 +52,6 @@ class TaskDbHelper {
         detail: maps[i]['detail'],
         status: (maps[i]['status'] == 1) ? true : false,
         id: maps[i]['taskid'],
-        due_date: maps[i]['due_date'],
         date_created: maps[i]['date_created'],
         farmname: maps[i]['farmname'],
         assgined_to: maps[i]['assgined_to'],
@@ -62,7 +61,6 @@ class TaskDbHelper {
 
   Future<int> deletetask(String id) async {
     int result = await db.delete("Task", where: "taskid = ?", whereArgs: [id]);
-
     return result;
   }
 }

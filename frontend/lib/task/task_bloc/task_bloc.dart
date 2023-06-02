@@ -49,5 +49,11 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         emit(TaskDataLoadingError(error));
       }
     });
+
+    on<TaskReset>(
+      (event, emit) {
+        emit(TaskInitial());
+      },
+    );
   }
 }

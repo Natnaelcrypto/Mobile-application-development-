@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../LocalStroe/Store.dart';
-import '../../user/bloc/user_event.dart';
-import '../bloc/task_bloc.dart';
-import '../bloc/task_event.dart';
-import '../bloc/task_state.dart';
+
 import '../model/task_model.dart';
+import '../task_bloc/task_bloc.dart';
+import '../task_bloc/task_event.dart';
+import '../task_bloc/task_state.dart';
 
 class TasksList extends StatelessWidget {
   bool status;
@@ -47,8 +47,12 @@ class TasksList extends StatelessWidget {
                       return UserPreferences.role == "emplooye"
                           ? tasks[index].assgined_to == UserPreferences.username
                               ? InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.go("/edittask",
+                                        extra: tasks.elementAt(index));
+                                  },
                                   child: Card(
+                                    color: Color.fromRGBO(149, 178, 184, .6),
                                     child: Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Row(
@@ -67,7 +71,7 @@ class TasksList extends StatelessWidget {
                                                 width: 10,
                                               ),
                                               Text(
-                                                  'Due Date: ${tasks.elementAt(index).due_date}'),
+                                                  'Created Date: ${tasks.elementAt(index).date_created.toString()}'),
                                               Text(
                                                   'detaile: ${tasks.elementAt(index).detail}')
                                             ],
@@ -95,9 +99,6 @@ class TasksList extends StatelessWidget {
                                                                 .detail,
                                                             status: done!,
                                                             id: tasks[index].id,
-                                                            due_date:
-                                                                tasks[index]
-                                                                    .due_date,
                                                             date_created: tasks[
                                                                     index]
                                                                 .date_created);
@@ -161,7 +162,7 @@ class TasksList extends StatelessWidget {
                                             width: 10,
                                           ),
                                           Text(
-                                              'Due Date: ${tasks.elementAt(index).due_date}'),
+                                              'Due Date: ${tasks.elementAt(index).date_created}'),
                                           Text(
                                               'detaile: ${tasks.elementAt(index).detail}')
                                         ],
@@ -182,8 +183,6 @@ class TasksList extends StatelessWidget {
                                                   detail: tasks[index].detail,
                                                   status: done!,
                                                   id: tasks[index].id,
-                                                  due_date:
-                                                      tasks[index].due_date,
                                                   date_created: tasks[index]
                                                       .date_created);
                                               TaskEvent event = TaskUpdate(
