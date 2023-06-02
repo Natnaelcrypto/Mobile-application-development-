@@ -1,7 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Herd } from './herd.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -10,28 +7,25 @@ import { Model } from 'mongoose';
 export class HerdsService {
   constructor(@InjectModel('Herd') private herdModel: Model<Herd>) {}
 
-  async find_herds(data: any) {
-    return await this.herdModel.find({ farmID: data.farm_Id });
+  async find_herds(farmname: any) {
+    console.log(farmname);
+    return await this.herdModel.find({ farmname: farmname });
   }
   async find_herd(id: any) {
     return await this.herdModel.findById(id);
   }
   async create_herd(data: any) {
     if (
-      !data.farmID ||
+      !data.farmname ||
       !data.herdID ||
       !data.age ||
       !data.bread ||
-      !data.health_history ||
-      !data.vaccination ||
-      !data.medication ||
-      !data.pregnancy ||
       !data.gender
     ) {
       throw new BadRequestException('All fileds are requierd');
     }
     const new_herd = new this.herdModel({
-      farmID: data.farmID,
+      farmname: data.farmname,
       herdID: data.herdID,
       age: data.age,
       bread: data.bread,
@@ -48,14 +42,18 @@ export class HerdsService {
     throw new BadRequestException();
   }
   async Update_herd(id: any, data: any) {
-    const herd = await this.herdModel.findById(id);
+    console.log(data);
+    console.log(id);
+    const herd = await this.herdModel.findById(id.id);
+
     if (!herd) {
       throw new BadRequestException('There is no herd');
     }
 
-    if (data.farm_Id) {
-      herd.farmID = data.farmID;
+    if (data.farmname) {
+      herd.farmname = data.farmname;
     }
+
     if (data.herdID) {
       herd.herdID = data.herdID;
     }
