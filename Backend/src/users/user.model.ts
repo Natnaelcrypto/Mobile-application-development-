@@ -21,12 +21,18 @@ export const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  farmName: {
+    type: String,
+    required: true,
+  },
 });
 
 export class User {
+  farmName: string;
   fristName: string;
   lastName: string;
   password: string;
   userName: string;
   Role: string;
 }
+
